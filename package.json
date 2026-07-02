@@ -1,0 +1,14 @@
+{
+  "name": "obedtime-landing",
+  "version": "1.1.0",
+  "description": "ObedTime catering landing page with admin panel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2"
+  }
+}

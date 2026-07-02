@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель ObedTime</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container { padding: 40px 0; max-width: 1000px; margin: auto; }
+        .tab-buttons { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .tab-content { display: none; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .tab-active { display: block; }
+        .lead-card { background: #f9f9f9; padding: 15px; margin-bottom: 10px; border-radius: 5px; border-left: 5px solid var(--primary-color); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .item-row { border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; position: relative; background: #fafafa; }
+        .btn-delete { background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; float: right; }
+        .btn-add { background: #2ecc71; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+        #login-section { text-align: center; margin-top: 100px; }
+        .lang-section { border-top: 2px solid var(--primary-color); padding-top: 20px; margin-top: 30px; }
+        .lang-title { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 15px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div id="login-section" class="container">
+        <h1>Вход в админ-панель</h1>
+        <div class="form-group" style="max-width: 300px; margin: auto;">
+            <input type="password" id="admin-password" placeholder="Пароль">
+            <button onclick="login()" class="btn" style="width: 100%; margin-top: 10px;">Войти</button>
+        </div>
+    </div>
+
+    <div id="admin-dashboard" class="container admin-container" style="display: none;">
+        <h1>Управление ObedTime</h1>
+        <div class="tab-buttons">
+            <button onclick="showTab('leads')" class="btn">Заказы/Лиды</button>
+            <button onclick="showTab('content')" class="btn">Редактор Сайта</button>
+            <button onclick="logout()" class="btn" style="background: #e74c3c;">Выйти</button>
+        </div>
+
+        <div id="leads-tab" class="tab-content tab-active">
+            <h2>Новые заказы</h2>
+            <div id="leads-list">Загрузка...</div>
+        </div>
+
+        <div id="content-tab" class="tab-content">
+            <h2>Настройки контента</h2>
+            <div id="form-container">
+                <!-- Global Settings -->
+                <div class="form-group">
+                    <label>Логотип (URL изображения)</label>
+                    <input type="text" id="g-logo">
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="text" id="g-phone">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="g-email">
+                </div>
+                <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" id="g-address">
+                </div>
+                <div class="form-group">
+                    <label>Рабочее время</label>
+                    <input type="text" id="g-hours">
+                </div>
+                <div class="form-group">
+                    <label>Google Maps Embed URL</label>
+                    <input type="text" id="g-mapUrl">
+                </div>
+
+                <div id="lang-sections">
+                    <!-- RU, UZ, EN sections will be injected here -->
+                </div>
+
+                <button onclick="saveAll()" class="btn" style="width: 100%; font-size: 1.2rem; margin-top: 30px;">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+
+        function escapeHTML(str) {
+            if (!str) return "";
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        async function login() {
+            const password = document.getElementById('admin-password').value;
+            const res = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+            if (res.ok) {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                loadLeads();
+                loadContent();
+            } else {
+                alert('Неверный пароль');
+            }
+        }
+
+        async function logout() {
+            await fetch('/api/admin/logout', { method: 'POST' });
+            location.reload();
+        }
+
+        function showTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('tab-active'));
+            document.getElementById(tab + '-tab').classList.add('tab-active');
+        }
+
+        async function loadLeads() {
+            const res = await fetch('/api/admin/leads');
+            if (!res.ok) return;
+            const leads = await res.json();
+            const list = document.getElementById('leads-list');
+            list.innerHTML = leads.length === 0 ? '<p>Заказов нет.</p>' : 
+                leads.reverse().map(lead => `
+                    <div class="lead-card">
+                        <p><strong>${escapeHTML(new Date(lead.date).toLocaleString())}</strong></p>
+                        <p>Имя: ${escapeHTML(lead.name)} | Тел/Email: ${escapeHTML(lead.email)}</p>
+                        <p>${escapeHTML(lead.message)}</p>
+                    </div>
+                `).join('');
+        }
+
+        async function loadContent() {
+            const res = await fetch('/api/content');
+            currentData = await res.json();
+            renderForm();
+        }
+
+        function renderForm() {
+            document.getElementById('g-logo').value = currentData.logo || '';
+            document.getElementById('g-phone').value = currentData.phone;
+            document.getElementById('g-email').value = currentData.email;
+            document.getElementById('g-address').value = currentData.address;
+            document.getElementById('g-hours').value = currentData.hours;
+            document.getElementById('g-mapUrl').value = currentData.mapUrl;
+
+            const langContainer = document.getElementById('lang-sections');
+            langContainer.innerHTML = '';
+
+            ['ru', 'uz', 'en'].forEach(lang => {
+                const section = document.createElement('div');
+                section.className = 'lang-section';
+                const data = currentData[lang];
+
+                section.innerHTML = `
+                    <div class="lang-title">${lang}</div>
+                    <div class="form-group"><label>Hero Title</label><input type="text" id="${lang}-hero-title" value="${escapeHTML(data.hero.title)}"></div>
+                    <div class="form-group"><label>Hero Description</label><textarea id="${lang}-hero-desc">${escapeHTML(data.hero.description)}</textarea></div>
+                    <div class="form-group"><label>About Title</label><input type="text" id="${lang}-about-title" value="${escapeHTML(data.about.title)}"></div>
+                    <div class="form-group"><label>About Text 1</label><textarea id="${lang}-about-text1">${escapeHTML(data.about.text1)}</textarea></div>
+                    <div class="form-group"><label>About Text 2</label><textarea id="${lang}-about-text2">${escapeHTML(data.about.text2)}</textarea></div>
+                    <div class="form-group"><label>Dishes Title</label><input type="text" id="${lang}-dishes-title" value="${escapeHTML(data.dishesTitle || '')}"></div>
+                    
+                    <h3>Stats</h3>
+                    <div id="${lang}-stats-list"></div>
+                    <button class="btn-add" onclick="addItem('${lang}', 'stats')">+ Добавить показатель</button>
+
+                    <h3>Services</h3>
+                    <div id="${lang}-services-list"></div>
+                    <button class="btn-add" onclick="addItem('${lang}', 'services')">+ Добавить услугу</button>
+
+                    <h3>Dishes (Menu)</h3>
+                    <div id="${lang}-dishes-list"></div>
+                    <button class="btn-add" onclick="addItem('${lang}', 'dishes')">+ Добавить блюдо</button>
+                `;
+                langContainer.appendChild(section);
+                renderItems(lang, 'stats');
+                renderItems(lang, 'services');
+                renderItems(lang, 'dishes');
+            });
+        }
+
+        function renderItems(lang, type) {
+            const container = document.getElementById(`${lang}-${type}-list`);
+            container.innerHTML = '';
+            currentData[lang][type].forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'item-row';
+                let fields = '';
+                if (type === 'stats') {
+                    fields = `
+                        <input type="text" placeholder="Value (100+)" value="${escapeHTML(item.value)}" onchange="updateItem('${lang}', '${type}', ${index}, 'value', this.value)">
+                        <input type="text" placeholder="Label" value="${escapeHTML(item.label)}" onchange="updateItem('${lang}', '${type}', ${index}, 'label', this.value)">
+                    `;
+                } else if (type === 'services') {
+                    fields = `
+                        <input type="text" placeholder="Icon" value="${escapeHTML(item.icon)}" onchange="updateItem('${lang}', '${type}', ${index}, 'icon', this.value)">
+                        <input type="text" placeholder="Title" value="${escapeHTML(item.title)}" onchange="updateItem('${lang}', '${type}', ${index}, 'title', this.value)">
+                        <textarea placeholder="Description" onchange="updateItem('${lang}', '${type}', ${index}, 'description', this.value)">${escapeHTML(item.description)}</textarea>
+                    `;
+                } else if (type === 'dishes') {
+                    fields = `
+                        <input type="text" placeholder="Name" value="${escapeHTML(item.name)}" onchange="updateItem('${lang}', '${type}', ${index}, 'name', this.value)">
+                        <input type="text" placeholder="Image URL" value="${escapeHTML(item.img)}" onchange="updateItem('${lang}', '${type}', ${index}, 'img', this.value)">
+                        <input type="text" placeholder="Description" value="${escapeHTML(item.desc)}" onchange="updateItem('${lang}', '${type}', ${index}, 'desc', this.value)">
+                    `;
+                }
+                row.innerHTML = `<button class="btn-delete" onclick="deleteItem('${lang}', '${type}', ${index})">Удалить</button>` + fields;
+                container.appendChild(row);
+            });
+        }
+
+        function addItem(lang, type) {
+            const newItem = type === 'stats' ? { value: '', label: '' } : 
+                          type === 'services' ? { icon: '', title: '', description: '' } : 
+                          { name: '', img: '', desc: '' };
+            currentData[lang][type].push(newItem);
+            renderItems(lang, type);
+        }
+
+        function deleteItem(lang, type, index) {
+            currentData[lang][type].splice(index, 1);
+            renderItems(lang, type);
+        }
+
+        function updateItem(lang, type, index, field, value) {
+            currentData[lang][type][index][field] = value;
+        }
+
+        async function saveAll() {
+            // Collect global settings
+            currentData.logo = document.getElementById('g-logo').value;
+            currentData.phone = document.getElementById('g-phone').value;
+            currentData.email = document.getElementById('g-email').value;
+            currentData.address = document.getElementById('g-address').value;
+            currentData.hours = document.getElementById('g-hours').value;
+            currentData.mapUrl = document.getElementById('g-mapUrl').value;
+
+            // Collect lang settings
+            ['ru', 'uz', 'en'].forEach(lang => {
+                currentData[lang].hero.title = document.getElementById(`${lang}-hero-title`).value;
+                currentData[lang].hero.description = document.getElementById(`${lang}-hero-desc`).value;
+                currentData[lang].about.title = document.getElementById(`${lang}-about-title`).value;
+                currentData[lang].about.text1 = document.getElementById(`${lang}-about-text1`).value;
+                currentData[lang].about.text2 = document.getElementById(`${lang}-about-text2`).value;
+                currentData[lang].dishesTitle = document.getElementById(`${lang}-dishes-title`).value;
+            });
+
+            const res = await fetch('/api/admin/content', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(currentData)
+            });
+            if (res.ok) alert('Все изменения успешно сохранены!');
+            else alert('Ошибка при сохранении');
+        }
+    </script>
+</body>
+</html>

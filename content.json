@@ -1,0 +1,249 @@
+{
+  "logoUrl": "https://via.placeholder.com/150x50?text=ObedTime",
+  "phone": "+998 95 141 55 55",
+  "email": "info@obedtime.uz",
+  "address": "Ташкент, Узбекистан",
+  "hours": "Пн-Сб, 09:00 - 18:00",
+  "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m1!2s41.311081,69.240562!5m2!1sru!2suz",
+  "ru": {
+    "nav": [
+      "Главная",
+      "О нас",
+      "Услуги",
+      "Меню",
+      "Локация",
+      "Контакты"
+    ],
+    "hero": {
+      "title": "Delicious \"Steam\" Plov",
+      "description": "Профессиональный кейтеринг и доставка обедов в Ташкенте. Мы заботимся о вашем питании, чтобы вы могли сосредоточиться на главном."
+    },
+    "about": {
+      "title": "О компании ObedTime",
+      "text1": "ObedTime — это команда профессионалов, влюбленных в свое дело. Мы специализируемся на организации корпоративного питания и выездного обслуживания в Ташкенте.",
+      "text2": "Наши преимущества — это свежие продукты, опытные повара и безупречный сервис."
+    },
+    "stats": [
+      {
+        "value": "100+",
+        "label": "Компаний"
+      },
+      {
+        "value": "500+",
+        "label": "Блюд"
+      },
+      {
+        "value": "100%",
+        "label": "Качество"
+      }
+    ],
+    "services": [
+      {
+        "icon": "🍱",
+        "title": "Доставка обедов",
+        "description": "Вкусные горячие обеды в офис."
+      },
+      {
+        "icon": "🏢",
+        "title": "Корпоративное питание",
+        "description": "Организация столовых."
+      },
+      {
+        "icon": "🥂",
+        "title": "Фуршеты",
+        "description": "Выездное обслуживание."
+      }
+    ],
+    "dishesTitle": "Наши узбекские блюда",
+    "dishes": [
+      {
+        "name": "Плов",
+        "img": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?q=80&w=400&auto=format&fit=crop",
+        "desc": "Король узбекской кухни"
+      },
+      {
+        "name": "Шурпа",
+        "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=400&auto=format&fit=crop",
+        "desc": "Наваристый мясной суп"
+      },
+      {
+        "name": "Манты",
+        "img": "https://images.unsplash.com/photo-1534422298391-e4f8c170db76?q=80&w=400&auto=format&fit=crop",
+        "desc": "Сочное тесто с мясом"
+      },
+      {
+        "name": "Шашлык",
+        "img": "https://images.unsplash.com/photo-1529692236671-f1f6e9460272?q=80&w=400&auto=format&fit=crop",
+        "desc": "Ароматное мясо на углях"
+      }
+    ],
+    "contact": {
+      "title": "Связаться с нами",
+      "namePlace": "Ваше имя",
+      "emailPlace": "Ваш Email",
+      "msgPlace": "Ваше сообщение",
+      "submit": "Отправить"
+    }
+  },
+  "uz": {
+    "nav": [
+      "Bosh sahifa",
+      "Biz haqimizda",
+      "Xizmatlar",
+      "Menyu",
+      "Lokatsiya",
+      "Kontaktlar"
+    ],
+    "hero": {
+      "title": "Sizning biznesingiz uchun mazali taomlar",
+      "description": "Toshkentda professional keytering va tushlik yetkazib berish. Biz sizning ovqatlanishingizga g'amxo'rlik qilamiz."
+    },
+    "about": {
+      "title": "ObedTime haqida",
+      "text1": "ObedTime — o'z ishiga sodiq professionallar jamoasi. Biz Toshkentda korporativ ovqatlanishni tashkil qilishga ixtisoslashganmiz.",
+      "text2": "Bizning afzalligimiz — yangi mahsulotlar va mukammal servis."
+    },
+    "stats": [
+      {
+        "value": "100+",
+        "label": "Kompaniyalar"
+      },
+      {
+        "value": "500+",
+        "label": "Taomlar"
+      },
+      {
+        "value": "100%",
+        "label": "Sifat"
+      }
+    ],
+    "services": [
+      {
+        "icon": "🍱",
+        "title": "Tushlik yetkazib berish",
+        "description": "Ofisga mazali issiq tushliklar."
+      },
+      {
+        "icon": "🏢",
+        "title": "Korporativ ovqatlanish",
+        "description": "Oshxonalarni tashkil qilish."
+      },
+      {
+        "icon": "🥂",
+        "title": "Furshetlar",
+        "description": "Tashqi xizmat ko'rsatish."
+      }
+    ],
+    "dishesTitle": "Bizning o'zbek taomlari",
+    "dishes": [
+      {
+        "name": "Palov",
+        "img": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?q=80&w=400&auto=format&fit=crop",
+        "desc": "O'zbek oshxonasining shohi"
+      },
+      {
+        "name": "Sho'rva",
+        "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=400&auto=format&fit=crop",
+        "desc": "Go'shtli mazali sho'rva"
+      },
+      {
+        "name": "Manti",
+        "img": "https://images.unsplash.com/photo-1534422298391-e4f8c170db76?q=80&w=400&auto=format&fit=crop",
+        "desc": "Go'shtli suvli manti"
+      },
+      {
+        "name": "Shashlik",
+        "img": "https://images.unsplash.com/photo-1529692236671-f1f6e9460272?q=80&w=400&auto=format&fit=crop",
+        "desc": "Ko'mirda pishgan lazzatli go'sht"
+      }
+    ],
+    "contact": {
+      "title": "Biz bilan bog'lanish",
+      "namePlace": "Ismingiz",
+      "emailPlace": "Emailingiz",
+      "msgPlace": "Xabaringiz",
+      "submit": "Yuborish"
+    }
+  },
+  "en": {
+    "nav": [
+      "Home",
+      "About Us",
+      "Services",
+      "Menu",
+      "Location",
+      "Contacts"
+    ],
+    "hero": {
+      "title": "Delicious Food for Your Business",
+      "description": "Professional catering and lunch delivery in Tashkent. We take care of your nutrition so you can focus on the main thing."
+    },
+    "about": {
+      "title": "About ObedTime",
+      "text1": "ObedTime is a team of professionals in love with their craft. We specialize in corporate catering and event services in Tashkent.",
+      "text2": "Our advantages are fresh products, experienced chefs and impeccable service."
+    },
+    "stats": [
+      {
+        "value": "100+",
+        "label": "Companies"
+      },
+      {
+        "value": "500+",
+        "label": "Dishes"
+      },
+      {
+        "value": "100%",
+        "label": "Quality"
+      }
+    ],
+    "services": [
+      {
+        "icon": "🍱",
+        "title": "Lunch Delivery",
+        "description": "Delicious hot lunches to the office."
+      },
+      {
+        "icon": "🏢",
+        "title": "Corporate Catering",
+        "description": "Organization of canteens."
+      },
+      {
+        "icon": "🥂",
+        "title": "Events & Banquets",
+        "description": "Outdoor catering services."
+      }
+    ],
+    "dishesTitle": "Our Uzbek Dishes",
+    "dishes": [
+      {
+        "name": "Plov",
+        "img": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?q=80&w=400&auto=format&fit=crop",
+        "desc": "The King of Uzbek cuisine"
+      },
+      {
+        "name": "Shurpa",
+        "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=400&auto=format&fit=crop",
+        "desc": "Rich meat soup"
+      },
+      {
+        "name": "Manti",
+        "img": "https://images.placeholder.com/400x250?text=Manti",
+        "desc": "Juicy dumplings"
+      },
+      {
+        "name": "Shashlik",
+        "img": "https://images.unsplash.com/photo-1529692236671-f1f6e9460272?q=80&w=400&auto=format&fit=crop",
+        "desc": "Flavorful grilled meat"
+      }
+    ],
+    "contact": {
+      "title": "Contact Us",
+      "namePlace": "Your Name",
+      "emailPlace": "Your Email",
+      "msgPlace": "Your Message",
+      "submit": "Send"
+    }
+  },
+  "logo": ""
+}
