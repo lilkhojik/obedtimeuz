@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ObedTime — Mazali ta'mlar vaqti</title>
+<meta name="description" content="ObedTime — ofislar va tadbirlar uchun kundalik tushlik yetkazib berish va ketering xizmati.">
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="/assets/logo.png" alt="ObedTime logo">
+      <span><span class="b1">Obed</span><span class="b2">Time</span></span>
+    </div>
+    <nav class="navlinks" id="navlinks">
+      <a href="#about" data-i18n="navAbout">Biz haqimizda</a>
+      <a href="#services" data-i18n="navServices">Xizmatlar</a>
+      <a href="#menu" data-i18n="navMenu">Menyu</a>
+      <a href="#schedule" data-i18n="navSchedule">Yetkazish jadvali</a>
+      <a href="#contact" data-i18n="navContact">Aloqa</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" id="langToggle">
+        <button data-lang="uz" class="active">UZ</button>
+        <button data-lang="ru">RU</button>
+      </div>
+      <a href="#contact" class="nav-cta" id="navcta" data-i18n="navCta">So'rov qoldirish</a>
+      <button class="burger" id="burgerBtn">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i18n="heroEyebrow">Kundalik tushlik &middot; Ketering</div>
+      <h1 data-edit="heroTitle">Mazali ta'mlar vaqti</h1>
+      <p class="lead" data-edit="heroSubtitle"></p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary" data-i18n="heroCta1">So'rov qoldirish</a>
+        <a href="#services" class="btn btn-ghost" data-i18n="heroCta2">Xizmatlar bilan tanishish</a>
+      </div>
+    </div>
+    <div class="logo-hero-wrap">
+      <img class="logo-hero-img" src="/assets/logo.png" alt="ObedTime">
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i18n="aboutEyebrow">Biz haqimizda</div>
+      <h2 data-edit="aboutTitle"></h2>
+    </div>
+    <div>
+      <p data-edit="aboutText"></p>
+      <div class="stat-grid">
+        <div class="stat"><div class="num" data-edit="stat1num"></div><div class="cap" data-edit="stat1cap"></div></div>
+        <div class="stat"><div class="num" data-edit="stat2num"></div><div class="cap" data-edit="stat2cap"></div></div>
+        <div class="stat"><div class="num" data-edit="stat3num"></div><div class="cap" data-edit="stat3cap"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="servicesEyebrow">Xizmatlar</div>
+      <h2 data-edit="servicesTitle"></h2>
+      <p data-edit="servicesSubtitle"></p>
+    </div>
+    <div class="card-grid">
+      <div class="service-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 2v8M9 2v8M6 10c0 2-1.5 2-1.5 4v8h3v-8C7.5 12 6 12 6 10zM9 2v20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3 data-edit="s1title"></h3>
+        <p data-edit="s1text"></p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7zM7 20a2 2 0 100-4 2 2 0 000 4zM18 20a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3 data-edit="s2title"></h3>
+        <p data-edit="s2text"></p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3 data-edit="s3title"></h3>
+        <p data-edit="s3text"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="menuEyebrow">Menyu</div>
+      <h2 data-edit="menuTitle"></h2>
+      <p data-edit="menuSubtitle"></p>
+    </div>
+    <div class="dish-grid" id="dishGrid"></div>
+  </div>
+</section>
+
+<section class="schedule" id="schedule">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="scheduleEyebrow">Kunlik jadval</div>
+      <h2 data-edit="scheduleTitle"></h2>
+    </div>
+    <div class="timeline">
+      <div class="slot">
+        <div class="lbl" data-edit="sched1label"></div>
+        <div class="t" data-edit="sched1time"></div>
+        <div class="d" data-edit="sched1text"></div>
+      </div>
+      <div class="slot">
+        <div class="lbl" data-edit="sched2label"></div>
+        <div class="t" data-edit="sched2time"></div>
+        <div class="d" data-edit="sched2text"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-info">
+      <div class="eyebrow" data-i18n="contactEyebrow">Aloqa</div>
+      <h2 data-edit="contactTitle"></h2>
+      <p data-edit="contactText"></p>
+      <div class="info-line"><span class="k" data-i18n="infoPhoneLabel">Telefon</span><span data-edit="infoPhone"></span></div>
+      <div class="info-line"><span class="k" data-i18n="infoEmailLabel">Email</span><span data-edit="infoEmail"></span></div>
+      <div class="info-line"><span class="k" data-i18n="infoAddressLabel">Manzil</span><span data-edit="infoAddress"></span></div>
+      <div class="info-line"><span class="k" data-i18n="infoHoursLabel">Buyurtma vaqti</span><span data-edit="infoHours"></span></div>
+    </div>
+    <form class="request-form" id="requestForm">
+      <div class="field">
+        <label for="rf-name" data-i18n="formName">Ism-familiya</label>
+        <input type="text" id="rf-name" required>
+      </div>
+      <div class="field">
+        <label for="rf-phone" data-i18n="formPhone">Telefon raqam</label>
+        <input type="tel" id="rf-phone" required placeholder="+998 __ ___ __ __">
+      </div>
+      <div class="field">
+        <label for="rf-company" data-i18n="formCompany">Kompaniya nomi (ixtiyoriy)</label>
+        <input type="text" id="rf-company">
+      </div>
+      <div class="field">
+        <label for="rf-message" data-i18n="formMessage">Xabar (ixtiyoriy)</label>
+        <textarea id="rf-message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="justify-content:center;" id="formSubmitBtn" data-i18n="formSubmit">Yuborish</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand"><img src="/assets/logo.png" alt="ObedTime"><span><span style="color:var(--gold)">Obed</span>Time</span></div>
+    <div class="fmeta">
+      <span data-edit="infoPhone2"></span>
+      <span>obedtime.uz</span>
+      <span>&copy; 2026 ObedTime</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
